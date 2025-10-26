@@ -1,1 +1,6 @@
 # DoaFacil
+
+O projeto DoaFácil plataforma de doações comunitárias em ASP.NET tem como objetivo criar um sistema web que conecte pessoas interessadas em doar a instituições ou indivíduos que necessitam de ajuda. A proposta é oferecer um ambiente simples e acessível, que facilite o ato de doar e recepcionar doações, fortalecendo a solidariedade nas comunidades locais.
+A aplicação será desenvolvida utilizando o framework ASP.NET MVC, escolhido por sua praticidade e organização, permitindo a criação de uma única aplicação com estrutura clara e separação entre interface, lógica e dados.
+O GitHub será utilizado como ferramenta principal de versionamento e colaboração, possibilitando o controle do código-fonte, o registro de contribuições dos integrantes e o acompanhamento do desenvolvimento do projeto por meio de um repositório público e de um quadro de tarefas (GitHub Projects).
+Durante o desenvolvimento, o grupo aplicará práticas de engenharia de software e metodologias ágeis, com o uso de tarefas distribuídas e entregas incrementais. O projeto também tem caráter social, ao incentivar a doação e o reaproveitamento de itens, demonstrando como a tecnologia pode contribuir para ações solidárias e impacto positivo na sociedade.
