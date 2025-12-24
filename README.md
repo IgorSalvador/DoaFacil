@@ -48,36 +48,6 @@ Antes de começar, certifique-se de ter instalado:
 
 ---
 
-## 📦 Instalação
-
-1. **Clone o repositório**
-   ```bash
-   git clone [URL_DO_REPOSITORIO]
-   cd DoaFacil
-   ```
-
-2. **Restaure as dependências**
-   ```bash
-   dotnet restore
-   ```
-
-    ```
-    DoaFacil/
-    ├── DoaFacil.Domain/              # Entidades, Value Objects, Interfaces
-    ├── DoaFacil.Application/         # Use Cases, DTOs, Services
-    ├── DoaFacil.Infrastructure/      # Repositórios, Data Access
-    └── DoaFacil.Web/                 # Controllers, Views, wwwroot
-    ```
-
----
-
-## Pré-requisitos
-
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- IDE: Visual Studio 2022 ou VS Code
-
----
-
 ## Como Configurar e Executar
 
 ### 1. Clone e Restaure
