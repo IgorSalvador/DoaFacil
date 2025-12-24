@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="DoaFacil.Application/DoaFacil.Application.csproj" Id="2aa7ae08-098e-47cc-a7ba-8d2650c8c7ab" />
+    <Project Path="DoaFacil.Domain/DoaFacil.Domain.csproj" Id="06f29e28-f31e-4a2c-a58a-139f966e19e9" />
+    <Project Path="DoaFacil.Infrastructure/DoaFacil.Infrastructure.csproj" Id="fce82079-223c-4f6d-94af-46bea9393365" />
+    <Project Path="DoaFacil.Web/DoaFacil.Web.csproj" Id="efb9ef7b-3974-4d40-9a03-23ba11a6139a" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
