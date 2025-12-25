@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: doafacil_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: doafacil
+      MYSQL_USER: doafacil
+      MYSQL_PASSWORD: doafacil123
+    ports:
+      - "3307:3307"
+    volumes:
+      - doafacil_mysql_data:/var/lib/mysql
+
+volumes:
+  doafacil_mysql_data:

@@ -58,15 +58,64 @@ cd DoaFacil
 dotnet restore
 ```
 
-### 2. Configure o Banco de Dados
+### 2. Configure o Banco de Dados (MySQL via Docker)
 
-**[INSTRUÇÕES DE CONFIGURAÇÃO DO BANCO DE DADOS]**
+O projeto utiliza MySQL como banco de dados, configurado via Docker Compose.
+
+#### 2.1. Pré-requisito: Docker
+
+Certifique-se de ter o [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
+
+#### 2.2. Inicie o Container MySQL
+
+Na raiz do projeto, execute:
 
 ```bash
-# Exemplo:
-# 1. Atualize a connection string em appsettings.json
-# 2. Execute as migrations:
+docker-compose up -d
+```
+
+Este comando irá:
+- Baixar a imagem do MySQL 8.0 (se necessário)
+- Criar um container chamado `doafacil_mysql`
+- Configurar o banco de dados com as seguintes credenciais:
+  - **Banco de dados:** doafacil
+  - **Usuário:** doafacil
+  - **Senha:** doafacil123
+  - **Porta:** 3307 (mapeada para a porta 3307 do host)
+
+#### 2.3. Configure a Connection String
+
+Atualize o arquivo `appsettings.json` ou `appsettings.Development.json` em `DoaFacil.Web`:
+
+```json
+{
+  "ConnectionStrings": {
+    "DoaFacilDomain": "Server=localhost;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;",
+    "DoaFacilAuth":   "Server=localhost;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;"
+  }
+}
+```
+
+#### 2.4. Execute as Migrations
+
+```bash
 dotnet ef database update --project DoaFacil.Infrastructure --startup-project DoaFacil.Web
+```
+
+#### 2.5. Comandos Úteis do Docker
+
+```bash
+# Ver status do container
+docker ps
+
+# Parar o container
+docker-compose down
+
+# Ver logs do MySQL
+docker logs doafacil_mysql
+
+# Acessar o console do MySQL
+docker exec -it doafacil_mysql mysql -u doafacil -p
 ```
 
 ### 3. Execute o Projeto
