@@ -58,15 +58,80 @@ cd DoaFacil
 dotnet restore
 ```
 
-### 2. Configure o Banco de Dados
+### 2. Configure o Banco de Dados (MySQL via Docker)
 
-**[INSTRUÇÕES DE CONFIGURAÇÃO DO BANCO DE DADOS]**
+O projeto utiliza MySQL como banco de dados, configurado via Docker Compose.
+
+#### 2.1. Pré-requisito: Docker
+
+Certifique-se de ter o [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
+
+#### 2.2. Inicie o Container MySQL
+
+O MySQL é executado em container, utilizando o mapeamento de porta:
 
 ```bash
-# Exemplo:
-# 1. Atualize a connection string em appsettings.json
-# 2. Execute as migrations:
-dotnet ef database update --project DoaFacil.Infrastructure --startup-project DoaFacil.Web
+Host (Windows): 3307 → Container (MySQL): 3306
+```
+
+Isso permite rodar o MySQL local (3306) e o MySQL em Docker simultaneamente, sem conflitos.
+
+Para subir o banco:
+
+```bash
+docker-compose up -d
+```
+
+#### 2.3. Variável de Ambiente
+
+As migrations utilizam variável de ambiente, evitando acoplamento com appsettings.json.
+
+Antes de executar qualquer comando de migration, defina a variável no terminal:
+
+```bash
+$env:DOAFACIL_MYSQL_CONN="Server=127.0.0.1;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;SslMode=None;"
+```
+
+#### 2.5. Configure a Connection String
+
+Atualize o arquivo `appsettings.json` ou `appsettings.Development.json` em `DoaFacil.Web`:
+
+```json
+{
+  "ConnectionStrings": {
+    "DoaFacilDomain": "Server=localhost;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;",
+    "DoaFacilAuth":   "Server=localhost;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;"
+  }
+}
+```
+
+#### 2.6. Execute as Migrations
+
+As migrations do domínio são executadas via script PowerShell, que:
+
+- configura a variável de ambiente
+- cria a migration (se necessário)
+- aplica o schema no banco
+
+Na raiz do projeto execute:
+```bash
+.\scripts\migrate-domain.ps1
+```
+
+#### 2.7. Comandos Úteis do Docker
+
+```bash
+# Ver status do container
+docker ps
+
+# Parar o container
+docker-compose down
+
+# Ver logs do MySQL
+docker logs doafacil_mysql
+
+# Acessar o console do MySQL
+docker exec -it doafacil_mysql mysql -u doafacil -p
 ```
 
 ### 3. Execute o Projeto
