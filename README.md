@@ -68,22 +68,31 @@ Certifique-se de ter o [Docker Desktop](https://www.docker.com/products/docker-d
 
 #### 2.2. Inicie o Container MySQL
 
-Na raiz do projeto, execute:
+O MySQL é executado em container, utilizando o mapeamento de porta:
+
+```bash
+Host (Windows): 3307 → Container (MySQL): 3306
+```
+
+Isso permite rodar o MySQL local (3306) e o MySQL em Docker simultaneamente, sem conflitos.
+
+Para subir o banco:
 
 ```bash
 docker-compose up -d
 ```
 
-Este comando irá:
-- Baixar a imagem do MySQL 8.0 (se necessário)
-- Criar um container chamado `doafacil_mysql`
-- Configurar o banco de dados com as seguintes credenciais:
-  - **Banco de dados:** doafacil
-  - **Usuário:** doafacil
-  - **Senha:** doafacil123
-  - **Porta:** 3307 (mapeada para a porta 3307 do host)
+#### 2.3. Variável de Ambiente
 
-#### 2.3. Configure a Connection String
+As migrations utilizam variável de ambiente, evitando acoplamento com appsettings.json.
+
+Antes de executar qualquer comando de migration, defina a variável no terminal:
+
+```bash
+$env:DOAFACIL_MYSQL_CONN="Server=127.0.0.1;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;SslMode=None;"
+```
+
+#### 2.5. Configure a Connection String
 
 Atualize o arquivo `appsettings.json` ou `appsettings.Development.json` em `DoaFacil.Web`:
 
@@ -96,13 +105,20 @@ Atualize o arquivo `appsettings.json` ou `appsettings.Development.json` em `DoaF
 }
 ```
 
-#### 2.4. Execute as Migrations
+#### 2.6. Execute as Migrations
 
+As migrations do domínio são executadas via script PowerShell, que:
+
+- configura a variável de ambiente
+- cria a migration (se necessário)
+- aplica o schema no banco
+
+Na raiz do projeto execute:
 ```bash
-dotnet ef database update --project DoaFacil.Infrastructure --startup-project DoaFacil.Web
+.\scripts\migrate-domain.ps1
 ```
 
-#### 2.5. Comandos Úteis do Docker
+#### 2.7. Comandos Úteis do Docker
 
 ```bash
 # Ver status do container
