@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 
 
-namespace DoaFacil.Infrastructure.Persistence.Domain.DesignTime;
+namespace DoaFacil.Infrastructure.Persistence.DesignTime;
 
 public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {

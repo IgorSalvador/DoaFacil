@@ -1,5 +1,7 @@
-﻿namespace DoaFacil.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-//public class ApplicationUser : IdentityUser
-//{
-//}
+namespace DoaFacil.Domain.Entities;
+
+public class ApplicationUser : IdentityUser<long>
+{
+}
