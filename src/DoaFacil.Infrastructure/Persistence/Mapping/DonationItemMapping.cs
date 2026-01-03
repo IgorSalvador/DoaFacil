@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DoaFacil.Infrastructure.Persistence.Domain.Mapping;
+namespace DoaFacil.Infrastructure.Persistence.Mapping;
 
 public class DonationItemMapping : IEntityTypeConfiguration<DonationItem>
 {

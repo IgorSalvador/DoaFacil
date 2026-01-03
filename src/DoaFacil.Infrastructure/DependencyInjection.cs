@@ -1,4 +1,4 @@
-﻿using DoaFacil.Infrastructure.Persistence.Domain;
+﻿using DoaFacil.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
