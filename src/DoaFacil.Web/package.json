@@ -1,0 +1,19 @@
+{
+  "name": "doafacil.web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tw:build": "tailwindcss -i ./Assets/styles/tailwind.css -o ./wwwroot/css/site.css",
+    "tw:watch": "tailwindcss -i ./Assets/styles/tailwind.css -o ./wwwroot/css/site.css --watch",
+    "tw:prod": "tailwindcss -i ./Assets/styles/tailwind.css -o ./wwwroot/css/site.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

@@ -1,0 +1,16 @@
+﻿@model BadgeViewModel
+
+@{
+    var cls = Model.Tone switch
+    {
+        BadgeTone.Green => "bg-emerald-50 text-emerald-700 ring-emerald-200",
+        BadgeTone.Amber => "bg-amber-50 text-amber-800 ring-amber-200",
+        BadgeTone.Red => "bg-rose-50 text-rose-700 ring-rose-200",
+        BadgeTone.Blue => "bg-sky-50 text-sky-700 ring-sky-200",
+        _ => "bg-slate-100 text-slate-700 ring-slate-200"
+    };
+}
+
+<span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 @cls">
+    @Model.Text
+</span>
