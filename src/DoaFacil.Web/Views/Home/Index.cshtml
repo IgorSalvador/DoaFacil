@@ -1,8 +1,36 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Tailwind Test";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+    <div class="w-full max-w-xl rounded-2xl bg-white shadow p-6 border border-slate-200">
+        <div class="flex items-start justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-semibold tracking-tight text-slate-900">
+                    Tailwind v4 está ativo
+                </h1>
+                <p class="mt-1 text-slate-600">
+                    Se você está vendo este card com sombra, borda, espaçamento e tipografia, o Tailwind está funcionando.
+                </p>
+            </div>
+
+            <span class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 ring-1 ring-emerald-200">
+                OK
+            </span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3">
+            <button class="rounded-xl bg-slate-900 px-4 py-2 text-white font-medium hover:bg-slate-800">
+                Ação Primária
+            </button>
+
+            <button class="rounded-xl bg-white px-4 py-2 text-slate-900 font-medium ring-1 ring-slate-200 hover:bg-slate-50">
+                Ação Secundária
+            </button>
+        </div>
+
+        <div class="mt-6 text-xs text-slate-500">
+            Rota: <code class="rounded bg-slate-100 px-2 py-1">/tailwind-test</code>
+        </div>
+    </div>
 </div>

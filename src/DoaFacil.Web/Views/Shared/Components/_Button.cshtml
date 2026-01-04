@@ -1,0 +1,26 @@
+﻿@model ButtonViewModel
+
+@{
+    var baseCls = "inline-flex items-center justify-center rounded-xl font-semibold transition focus:outline-none focus:ring-2 focus:ring-slate-300 disabled:opacity-50 disabled:pointer-events-none";
+    var sizeCls = Model.Size == "sm"
+        ? "px-3 py-2 text-sm"
+        : "px-4 py-2 text-sm";
+
+    var variantCls = Model.Variant switch
+    {
+        "secondary" => "bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50",
+        "danger" => "bg-rose-600 text-white hover:bg-rose-500",
+        _ => "bg-slate-900 text-white hover:bg-slate-800"
+    };
+
+    var cls = $"{baseCls} {sizeCls} {variantCls}";
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Href))
+{
+    <a href="@Model.Href" class="@cls">@Model.Text</a>
+}
+else
+{
+    <button type="button" class="@cls">@Model.Text</button>
+}

@@ -1,0 +1,28 @@
+﻿@model CardViewModel
+
+<div class="rounded-2xl bg-white border border-slate-200 shadow-soft">
+    @if (!string.IsNullOrWhiteSpace(Model.Title) || !string.IsNullOrWhiteSpace(Model.Subtitle))
+    {
+        <div class="p-6 border-b border-slate-200">
+            @if (!string.IsNullOrWhiteSpace(Model.Title))
+            {
+                <div class="text-lg font-semibold tracking-tight">@Model.Title</div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+            {
+                <div class="mt-1 text-sm text-slate-600">@Model.Subtitle</div>
+            }
+        </div>
+    }
+
+    <div class="p-6">
+        @if (Model.Body is null)
+        {
+            <div class="text-sm text-slate-600">Conteúdo do card</div>
+        }
+        else
+        {
+            @Model.Body
+        }
+    </div>
+</div>

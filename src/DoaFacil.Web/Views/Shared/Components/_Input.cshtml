@@ -1,0 +1,32 @@
+﻿@model InputViewModel
+
+@{
+    var hasError = !string.IsNullOrWhiteSpace(Model.Error);
+    var inputCls = hasError
+        ? "w-full rounded-xl bg-white px-3 py-2 text-sm text-slate-900 ring-1 ring-rose-300 placeholder:text-slate-400 focus:ring-2 focus:ring-rose-300 outline-none"
+        : "w-full rounded-xl bg-white px-3 py-2 text-sm text-slate-900 ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 outline-none";
+}
+
+<div class="space-y-1.5">
+    @if (!string.IsNullOrWhiteSpace(Model.Label))
+    {
+        <label class="text-sm font-medium text-slate-700" for="@Model.Name">@Model.Label</label>
+    }
+
+    <input id="@Model.Name"
+           name="@Model.Name"
+           type="@Model.Type"
+           value="@Model.Value"
+           placeholder="@Model.Placeholder"
+           class="@inputCls" />
+
+    @if (!string.IsNullOrWhiteSpace(Model.Hint))
+    {
+        <div class="text-xs text-slate-500">@Model.Hint</div>
+    }
+
+    @if (hasError)
+    {
+        <div class="text-xs text-rose-600">@Model.Error</div>
+    }
+</div>
