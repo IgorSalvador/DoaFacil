@@ -18,7 +18,7 @@ namespace DoaFacil.Web.Controllers
         [HttpGet, AllowAnonymous]
         public IActionResult Login() => View();
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost, ValidateAntiForgeryToken, AllowAnonymous]
         public async Task<IActionResult> Login(SignInRequest model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -33,7 +33,7 @@ namespace DoaFacil.Web.Controllers
         [HttpGet, AllowAnonymous]
         public IActionResult AccessDenied() => View();
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _authService.SignOutAsync(HttpContext.RequestAborted);
