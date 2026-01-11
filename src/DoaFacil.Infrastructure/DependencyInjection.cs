@@ -1,4 +1,7 @@
-﻿using DoaFacil.Infrastructure.Persistence;
+﻿using DoaFacil.Application.Services;
+using DoaFacil.Infrastructure.Auth;
+using DoaFacil.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +14,36 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services.AddContexts(configuration);
+        services.AddIdentityServices();
+        services.AddServices();
 
         return services;
+    }
+
+    private static void AddIdentityServices(this IServiceCollection services)
+    {
+        services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+        {
+            options.User.RequireUniqueEmail = true;
+
+            options.Password.RequiredLength = 8;
+            options.Password.RequireDigit = true;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = true;
+        })
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
+
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+
+            options.SlidingExpiration = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        });
     }
 
     private static void AddContexts(this IServiceCollection services, IConfiguration configuration)
@@ -36,5 +67,13 @@ public static class DependencyInjection
                         errorNumbersToAdd: null
                     );
                 }));
+    }
+
+    private static void AddServices(this IServiceCollection services)
+    {
+        services.AddHttpContextAccessor();
+
+        services.AddScoped<IAuthService, IdentityService>();
+        services.AddScoped<ICurrentUser, CurrentUser>();
     }
 }
