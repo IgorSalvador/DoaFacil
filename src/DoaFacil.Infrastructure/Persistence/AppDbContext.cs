@@ -1,4 +1,5 @@
 ﻿using DoaFacil.Domain.Entities;
+using DoaFacil.Infrastructure.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace DoaFacil.Infrastructure.Persistence;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) 
-    : IdentityDbContext<ApplicationUser, IdentityRole<long>, long, IdentityUserClaim<long>, IdentityUserRole<long>,
-        IdentityUserLogin<long>, IdentityRoleClaim<long>, IdentityUserToken<long>>(options)
+    : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid, IdentityUserClaim<Guid>, IdentityUserRole<Guid>,
+        IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>(options)
 {
     public DbSet<DonationItem> DonationItems => Set<DonationItem>();
     public DbSet<DonationRequest> DonationRequests => Set<DonationRequest>();
@@ -15,8 +16,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
         base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 }

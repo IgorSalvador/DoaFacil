@@ -8,7 +8,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {
     public AppDbContext CreateDbContext(string[] args)
     {
-        var connectionString = Environment.GetEnvironmentVariable("DOAFACIL_MYSQL_CONN");
+        var connectionString = Environment.GetEnvironmentVariable("DOAFACIL_MYSQL_CONN") ?? "Server=localhost;Port=3307;Database=doafacil;Uid=doafacil;Pwd=doafacil123;";
 
         if (string.IsNullOrWhiteSpace(connectionString))
         {

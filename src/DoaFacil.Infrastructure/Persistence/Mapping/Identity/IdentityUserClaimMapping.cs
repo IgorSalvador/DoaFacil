@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DoaFacil.Infrastructure.Persistence.Mapping.Identity;
 
-public class IdentityUserClaimMapping : IEntityTypeConfiguration<IdentityUserClaim<long>>
+public class IdentityUserClaimMapping : IEntityTypeConfiguration<IdentityUserClaim<Guid>>
 {
-    public void Configure(EntityTypeBuilder<IdentityUserClaim<long>> builder)
+    public void Configure(EntityTypeBuilder<IdentityUserClaim<Guid>> builder)
     {
         builder.ToTable("IdentityClaim");
 

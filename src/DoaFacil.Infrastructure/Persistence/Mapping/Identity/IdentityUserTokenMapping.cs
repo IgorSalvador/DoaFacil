@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DoaFacil.Infrastructure.Persistence.Mapping.Identity;
 
-public class IdentityUserTokenMapping : IEntityTypeConfiguration<IdentityUserToken<long>>
+public class IdentityUserTokenMapping : IEntityTypeConfiguration<IdentityUserToken<Guid>>
 {
-    public void Configure(EntityTypeBuilder<IdentityUserToken<long>> builder)
+    public void Configure(EntityTypeBuilder<IdentityUserToken<Guid>> builder)
     {
         builder.ToTable("IdentityUserToken");
 

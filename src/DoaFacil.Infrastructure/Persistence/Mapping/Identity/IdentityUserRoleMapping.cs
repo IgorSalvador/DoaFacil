@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DoaFacil.Infrastructure.Persistence.Mapping.Identity;
 
-public class IdentityUserRoleMapping : IEntityTypeConfiguration<IdentityUserRole<long>>
+public class IdentityUserRoleMapping : IEntityTypeConfiguration<IdentityUserRole<Guid>>
 {
-    public void Configure(EntityTypeBuilder<IdentityUserRole<long>> builder)
+    public void Configure(EntityTypeBuilder<IdentityUserRole<Guid>> builder)
     {
         builder.ToTable("IdentityUserRole");
 
